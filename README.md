@@ -20,11 +20,11 @@ countries = PRESETS['SOUTH_AMERICA']
 
 An empty list will create a gazetteer dumpfile with __all of GeoNames__ (see warning below). 
 
-### GeoNames download
+### Download source data
 
 Run `python download.py` to download the country data files from GeoNames.
 
-### Building the package
+### Build the package
 
 Run `python convert.py` to generate the gazetteer package. The result file
 will be in the `output` folder in two versions:
