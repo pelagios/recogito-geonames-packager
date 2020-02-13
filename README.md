@@ -1,17 +1,36 @@
-# Recogito2 Gazetteer Package: GeoNames-All
+# Recogito GeoNames Builder
 
-Code to generate a gazetteer package from the [full GeoNames download](http://download.geonames.org/export/dump/readme.txt). 
-The gazetter file format is compliant with the [Linked Places specification](https://github.com/LinkedPasts/linked-places).
+A utility to build custom gazetteer packages for [Recogito](https://recogito.pelagios.org) from 
+[GeoNames](http://geonames.org) data.
 
-This repository contains two Python scripts:
+## Compiling your own gazetteer package
 
-- `download.py` downloads all country ZIP files to the `./downloads` folder (this can take a while)
-- `convert.py` generates the dump file `./output/geonames_all.lpf.jsonl` in [JSONL](http://jsonlines.org/) format
+Configure the `config.py` file according to your needs. Use the `countries` property to list the countries
+you want included in your package.
 
-## Configuring the Build
+```python
+countries = [ 'AT' ] 
+```
 
-The build can be configured to contain a specific country (or list of countries only). Edit the file `config.py` according
-to your needs
+You can also use one of the pre-configured lists as a shortcut.
+
+```python
+countries = PRESETS['SOUTH_AMERICA']
+```
+
+An empty list will create a gazetteer dumpfile with __all of GeoNames__ (see warning below). 
+
+### GeoNames download
+
+Run `python download.py` to download the country data files from GeoNames.
+
+### Building the package
+
+Run `python convert.py` to generate the gazetteer package. The result file
+will be in the `output` folder in two versions:
+
+- A [JSONL](http://jsonlines.org/) file according to the [Linked Places specification](https://github.com/LinkedPasts/linked-places)
+- A compressed copy in .gz format
 
 ## Note to Recogito Maintainers
 
