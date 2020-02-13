@@ -31,7 +31,7 @@ class Feature:
       'geometry': {
         'type': 'Point',
         'coordinates': [
-          self.fields[5], self.fields[4]
+          float(self.fields[5]), float(self.fields[4])
         ]
       }
     }
