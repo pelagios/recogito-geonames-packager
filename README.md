@@ -18,7 +18,7 @@ You can also use one of the pre-configured lists as a shortcut.
 countries = PRESETS['SOUTH_AMERICA']
 ```
 
-An empty list will create a gazetteer dumpfile with __all of GeoNames__ (see warning below). 
+An empty list will create a gazetteer dumpfile with __all of GeoNames__ (see note below). 
 
 ### Download source data
 
