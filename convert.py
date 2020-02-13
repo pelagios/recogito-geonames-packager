@@ -43,9 +43,14 @@ def convert_zip(ccode):
     with zipfile.ZipFile(f'./downloads/{ccode}.zip', 'r') as archive:
       with archive.open(f'{ccode}.txt') as f:
         reader = csv.reader(io.TextIOWrapper(f), delimiter='\t')
+
+        ctr = 0
         for row in reader:
           feature = Feature(row)
           outfile.write(f'{feature.to_json()}\n')
+          ctr += 1
+
+        return ctr
 
 def gzip_outfile():
   with open(OUTFILE, 'rb') as infile, gzip.open(f'{OUTFILE}.gz', 'wb') as outfile:
@@ -60,13 +65,23 @@ except OSError:
 # List all Zip files in the downloads folder...
 zipfiles = [f for f in glob.glob('./downloads/*.zip')]
 ccodes = list(map(lambda f: f[f.rfind('/') + 1 : -4], zipfiles))
+
+# Filter according to settings
+if len(cfg.countries) > 0:
+  ccodes = list(filter(lambda ccode: ccode in cfg.countries, ccodes))
+
 ccodes.sort()
 
 # ...convert...
+ctr = 0
 for ccode in ccodes:
   print(f'Converting file {ccode}.zip')
-  convert_zip(ccode)
+  ctr += convert_zip(ccode)
+
+print(f'Converted {ctr} records')
 
 # ...and gzip 
+print('GZipping...')
 gzip_outfile()
+print('Done.')
 
