@@ -1,4 +1,4 @@
-# Recogito GeoNames Builder
+# Recogito GeoNames Packager
 
 A utility to build custom gazetteer packages for [Recogito](https://recogito.pelagios.org) from 
 [GeoNames](http://geonames.org) data.
