@@ -32,6 +32,23 @@ folder, in two versions:
 - A [JSONL](http://jsonlines.org/) file, compatible with the [Linked Places specification](https://github.com/LinkedPasts/linked-places)
 - A compressed copy in .gz format
 
+### Import to Recogito
+
+__Attention: requires admin privileges on your Recogito instance!__
+
+On your Recogito server, go to `/admin/authorities`. Click __Add Authority File__.
+
+![Screenshot](screenshot.png)
+
+Fill the gazetteer properties. You are free to select an identifier,
+short name, full name, and short code and colour of your choice. For
+the URL pattern, use the following (Recogito uses this to truncate
+the gazetteer URIs in the UI for display purposes):
+
+```
+http://sws.geonames.org/
+```
+
 ## Note to Recogito Maintainers
 
 Note that importing large gazetteer data files to Recogito is currently a slow process. Avoid the use of a full GeoNames
