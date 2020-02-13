@@ -5,8 +5,8 @@ A utility to build custom gazetteer packages for [Recogito](https://recogito.pel
 
 ## Compiling your own gazetteer package
 
-Configure the `config.py` file according to your needs. Use the `countries` property to list the countries
-you want included in your package.
+Edit the `config.py` file according to your needs. Use the `countries` property to configure which countries
+to include in your gazetteer file.
 
 ```python
 countries = [ 'AT' ] 
