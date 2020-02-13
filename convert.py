@@ -1,5 +1,6 @@
 import csv
 import glob
+import gzip
 import io
 import json
 import os
@@ -46,6 +47,9 @@ def convert_zip(ccode):
           feature = Feature(row)
           outfile.write(f'{feature.to_json()}\n')
 
+def gzip_outfile():
+  with open(OUTFILE, 'rb') as infile, gzip.open(f'{OUTFILE}.gz', 'wb') as outfile:
+    outfile.writelines(infile)
 
 # Delete outfile (if exists)
 try:
@@ -58,10 +62,11 @@ zipfiles = [f for f in glob.glob('./downloads/*.zip')]
 ccodes = list(map(lambda f: f[f.rfind('/') + 1 : -4], zipfiles))
 ccodes.sort()
 
-print(cfg)
-
-# ...and convert
+# ...convert...
 for ccode in ccodes:
   print(f'Converting file {ccode}.zip')
   convert_zip(ccode)
+
+# ...and gzip 
+gzip_outfile()
 
