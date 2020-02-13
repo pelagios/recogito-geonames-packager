@@ -49,6 +49,8 @@ the gazetteer URIs in the UI for display purposes):
 http://sws.geonames.org/
 ```
 
+In the __upload file__ field, pick your dump file and click __Save__.
+
 ## Note to Recogito Maintainers
 
 Note that importing large gazetteer data files to Recogito is currently a slow process. Avoid the use of a full GeoNames
