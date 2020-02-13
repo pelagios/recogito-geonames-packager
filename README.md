@@ -1,6 +1,7 @@
 # Recogito2 Gazetteer Package: GeoNames-All
 
-Code to generate a gazetteer package from the [full GeoNames download](http://download.geonames.org/export/dump/readme.txt). The gazetter file format is compliant with the [Linked Places specification](https://github.com/LinkedPasts/linked-places).
+Code to generate a gazetteer package from the [full GeoNames download](http://download.geonames.org/export/dump/readme.txt). 
+The gazetter file format is compliant with the [Linked Places specification](https://github.com/LinkedPasts/linked-places).
 
 This repository contains two Python scripts:
 
@@ -9,7 +10,8 @@ This repository contains two Python scripts:
 
 ## Configuring the Build
 
-The build can be configured to contain a specific country (or list of countries only) __TODO__
+The build can be configured to contain a specific country (or list of countries only). Edit the file `config.py` according
+to your needs
 
 ## Note to Recogito Maintainers
 
@@ -20,5 +22,5 @@ instance. (Instead, create a clone of the instance, make the update there, and t
 ## TODO
 
 - Add continents and non-country features
-- Merge natural earth polygon shapes
-- World continent borders from the [UCLA Geoportal](http://gis.ucla.edu/geodata/dataset/continent_ln)
+- Include natural earth polygon shapes
+- Use world continent borders from the [UCLA Geoportal](http://gis.ucla.edu/geodata/dataset/continent_ln)
