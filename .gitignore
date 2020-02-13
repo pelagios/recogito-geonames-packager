@@ -1,2 +1,3 @@
 downloads/*.zip
 output/*.jsonl
+output/*.jsonl.gz
