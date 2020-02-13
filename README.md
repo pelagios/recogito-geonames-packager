@@ -1,11 +1,14 @@
-# recogito2-places-geonames-all
+# Recogito2 Gazetteer Package: GeoNames-All
 
-Code to generate a gazetteer file from all of GeoNames.
+Code to generate a gazetteer package from the [full GeoNames download](http://download.geonames.org/export/dump/readme.txt). The gazetter file format is compliant with the [Linked Places specification](https://github.com/LinkedPasts/linked-places).
 
-## What this does
+This repository contains two Python scripts:
 
-1. Pulls the list of country codes from <http://download.geonames.org/export/dump/countryInfo.txt>
-2. Downloads the dump for each country into the `downloads` folder (warning: this will take a while)
-3. Goes through the CSV for every country and...
-   - creates a Linked Places JSON record for each row
-   - appends the record to the result [JSONL](http://jsonlines.org/) file
+- `download.py` downloads all country ZIP files to the `./downloads` folder (this can take a while)
+- `convert.py` generates the dump file `./output/geonames_all.lpf.jsonl` in [JSONL](http://jsonlines.org/) format
+
+## TODO
+
+- Add continents and non-country features
+- Merge natural earth polygon shapes
+- World continent borders from the [UCLA Geoportal](http://gis.ucla.edu/geodata/dataset/continent_ln)

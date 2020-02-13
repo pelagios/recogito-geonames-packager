@@ -2,7 +2,10 @@ import csv
 import glob
 import io
 import json
+import os
 import zipfile
+
+OUTFILE = './output/geonames_all.lpf.jsonl'
 
 class Feature:
 
@@ -10,6 +13,9 @@ class Feature:
     self.fields = csv
 
   def to_json(self):
+    names = set(map(lambda str: str.strip(), self.fields[3].split(',')))
+    names.add(self.fields[0])
+
     feature = {
       '@id': f'http://sws.geonames.org/{self.fields[0]}',
       'type': 'Feature',
@@ -17,9 +23,9 @@ class Feature:
         'title': self.fields[1],
         'ccodes': [ self.fields[8] ],
       },
-      'names': [
-        { 'toponym': self.fields[1] }
-      ],
+      'names': list(map(lambda str: {
+        'toponym': str
+      }, names)),
       'geometry': {
         'type': 'Point',
         'coordinates': [
@@ -28,12 +34,10 @@ class Feature:
       }
     }
 
-    # TODO alternateNames fields[3]
-
     return json.dumps(feature)
 
 def convert_zip(ccode):
-  with open('./output/geonames_all.lpf.jsonl', 'a') as outfile:
+  with open(OUTFILE, 'a') as outfile:
     with zipfile.ZipFile(f'./downloads/{ccode}.zip', 'r') as archive:
       with archive.open(f'{ccode}.txt') as f:
         reader = csv.reader(io.TextIOWrapper(f), delimiter='\t')
@@ -41,12 +45,20 @@ def convert_zip(ccode):
           feature = Feature(row)
           outfile.write(f'{feature.to_json()}\n')
 
-# TODO delete outfile
 
+# Delete outfile (if exists)
+try:
+  os.remove(OUTFILE)
+except OSError:
+  pass
+
+# List all Zip files in the downloads folder...
 zipfiles = [f for f in glob.glob('./downloads/*.zip')]
-for f in zipfiles:
-  ccode = f[f.rfind('/') + 1 : -4]  
+ccodes = list(map(lambda f: f[f.rfind('/') + 1 : -4], zipfiles))
+ccodes.sort()
 
-  print(f'Converting file {f}')
+# ...and convert
+for ccode in ccodes:
+  print(f'Converting file {ccode}.zip')
   convert_zip(ccode)
 
