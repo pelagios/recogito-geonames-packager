@@ -26,19 +26,19 @@ Run `python download.py` to download the country data files from GeoNames.
 
 ### Build the package
 
-Run `python convert.py` to generate the gazetteer package. The result file
-will be in the `output` folder in two versions:
+Run `python convert.py` to build the gazetteer package. The result file will be in the `output` 
+folder, in two versions:
 
-- A [JSONL](http://jsonlines.org/) file according to the [Linked Places specification](https://github.com/LinkedPasts/linked-places)
+- A [JSONL](http://jsonlines.org/) file, compatible with the [Linked Places specification](https://github.com/LinkedPasts/linked-places)
 - A compressed copy in .gz format
 
 ## Note to Recogito Maintainers
 
-The full gazetteer package is a fairly large dataset. We recommend importing it first into a new & empty Recogito instance.
-Incremental updates are fine, but updating an existing instance with the full dump is __not recommended__ on a production
-instance. (Instead, create a clone of the instance, make the update there, and then switch indices.)
+Note that importing large gazetteer data files to Recogito is currently a slow process. Avoid the use of a full GeoNames
+dataset, if possible. Ideally, large gazetteers (>150.000 places) should be imported first, into a new & empty Recogito 
+instance.
 
-## TODO
+## Future work
 
 - Add continents and non-country features
 - Include natural earth polygon shapes
