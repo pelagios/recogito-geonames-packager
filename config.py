@@ -6,7 +6,7 @@ outfile = 'geonames_all'
 countries = [ 'AT' ] # PRESETS['AFRICA']
 
 # Include continents and natural features
-include_non_countries = True
+include_non_country_features = True
 
 # Preset country lists (for use with 'countries' property)
 PRESETS = {

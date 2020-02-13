@@ -4,8 +4,9 @@ import io
 import json
 import os
 import zipfile
+import config as cfg
 
-OUTFILE = './output/geonames_all.lpf.jsonl'
+OUTFILE = f'./output/{cfg.outfile}.lpf.jsonl'
 
 class Feature:
 
@@ -56,6 +57,8 @@ except OSError:
 zipfiles = [f for f in glob.glob('./downloads/*.zip')]
 ccodes = list(map(lambda f: f[f.rfind('/') + 1 : -4], zipfiles))
 ccodes.sort()
+
+print(cfg)
 
 # ...and convert
 for ccode in ccodes:
