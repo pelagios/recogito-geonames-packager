@@ -41,7 +41,7 @@ On your Recogito server, go to `/admin/authorities`. Click __Add Authority File_
 ![Screenshot](screenshot.png)
 
 Fill the gazetteer properties. You are free to select an identifier,
-short name, full name, and short code and colour of your choice. For
+short name, full name, short code and colour of your choice. For
 the URL pattern, use the following (Recogito uses this to truncate
 the gazetteer URIs in the UI for display purposes):
 
@@ -49,7 +49,7 @@ the gazetteer URIs in the UI for display purposes):
 http://sws.geonames.org/
 ```
 
-In the __upload file__ field, pick your dump file and click __Save__.
+In the __upload file__ field, pick your dump file (gzipped version) and click __Save__.
 
 ## Note to Recogito Maintainers
 
