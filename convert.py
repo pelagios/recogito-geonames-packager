@@ -16,7 +16,10 @@ class Feature:
 
   def to_json(self):
     names = set(map(lambda str: str.strip(), self.fields[3].split(',')))
-    names.add(self.fields[0])
+    names.add(self.fields[1])
+
+    # Remove empty strings (in case the 'alternate names' column was empty!)
+    names = list(filter(None, names))
 
     feature = {
       '@id': f'http://sws.geonames.org/{self.fields[0]}',

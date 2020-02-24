@@ -10,12 +10,12 @@ PRESETS = {
 }
 
 # Filename and path for the output file
-outfile = 'geonames_ANTARCTICA'
+outfile = 'geonames_AT'
 
 # Provide your own list of country code, or use one of the presets.
 # Leave list empty for a full build with all of GeoNames.
-# countries = [ 'AT' ] 
-countries = PRESETS['ANTARCTICA']
+countries = [ 'AT' ] 
+# countries = PRESETS['ANTARCTICA']
 
 
 
