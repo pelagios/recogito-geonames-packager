@@ -20,6 +20,17 @@ countries = PRESETS['SOUTH_AMERICA']
 
 An empty list will create a gazetteer dumpfile with __all of GeoNames__ (see note below). 
 
+In most cases, it will be useful to include only 'notable' places. When setting the
+`require_concordance` property to `True`, the package will only include GeoNames features
+that have a corresponding entry on Wikipedia or Wikidata. (This will reduce a full GeoNames 
+to approx. 1.6 million records.)
+
+```python
+# If set to True, the export will only include GeoNames features 
+# that have a Wikipedia or Wikidata link
+require_concordance = True
+```
+
 ### Download source data
 
 Run `python download.py` to download the country data files from GeoNames.
