@@ -22,8 +22,8 @@ An empty list will create a gazetteer dumpfile with __all of GeoNames__ (see not
 
 In most cases, it will be useful to include only 'notable' places. When setting the
 `require_concordance` property to `True`, the package will only include GeoNames features
-that have a corresponding entry on Wikipedia or Wikidata. (This will reduce a full GeoNames 
-to approx. 1.6 million records.)
+that have a corresponding entry on Wikipedia or Wikidata. (This will reduce the full GeoNames 
+dataset to approx. 1.6 million records.)
 
 ```python
 # If set to True, the export will only include GeoNames features 
