@@ -108,7 +108,8 @@ maybe_concordances = Concordances() if cfg.require_concordance else None
 
 # List all Zip files in the downloads folder...
 zipfiles = [f for f in glob.glob('./downloads/*.zip')]
-ccodes = list(map(lambda f: f[f.rfind('/') + 1 : -4], zipfiles))
+ccodes = map(lambda f: f[f.rfind('/') + 1 : -4], zipfiles)
+ccodes = list(filter(lambda ccode: ccode != 'alternateNamesV2', ccodes)) # Not very nice...
 
 # Filter according to settings
 if len(cfg.countries) > 0:
