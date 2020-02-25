@@ -15,11 +15,19 @@ class Feature:
     self.fields = csv
 
   def to_json(self):
+
+    def parse_num(str):
+      s = str.strip()
+      return int(s) if s else None
+
     names = set(map(lambda str: str.strip(), self.fields[3].split(',')))
     names.add(self.fields[1])
 
     # Remove empty strings (in case the 'alternate names' column was empty!)
     names = list(filter(None, names))
+
+    admin_codes = map(lambda idx: self.fields[idx], range(10, 13))
+    admin_codes = list(filter(lambda c: c.strip(), admin_codes))
 
     feature = {
       '@id': f'http://sws.geonames.org/{self.fields[0]}',
@@ -27,6 +35,11 @@ class Feature:
       'properties': {
         'title': self.fields[1],
         'ccodes': [ self.fields[8] ],
+        'admin_codes': admin_codes,
+        'feature_class': self.fields[6],
+        'feature_code': self.fields[7],
+        'population': parse_num(self.fields[14]), 
+        'elevation': parse_num(self.fields[15])
       },
       'names': list(map(lambda str: {
         'toponym': str
