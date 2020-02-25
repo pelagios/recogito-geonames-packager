@@ -70,7 +70,6 @@ instance.
 
 ## Future work
 
-- (Optionally?) use Wikipedia/-data links in the alternateNames dataset as a filter criterion
 - Add continents and non-country features
 - Include natural earth polygon shapes
 - Use world continent borders from the [UCLA Geoportal](http://gis.ucla.edu/geodata/dataset/continent_ln)
