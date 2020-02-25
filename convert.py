@@ -54,7 +54,32 @@ class Feature:
 
     return json.dumps(feature)
 
-def convert_zip(ccode):
+class Concordances:
+
+  #  link concordances from the alternateNamesV2.zip file
+  def __init__(self):
+    print('Building concordance table (may take a while)')
+    self.concordances = {}
+
+    with zipfile.ZipFile('./downloads/alternateNamesV2.zip', 'r') as archive:
+      with archive.open('alternateNamesV2.txt') as f:
+        reader = csv.reader(io.TextIOWrapper(f), delimiter='\t')
+
+        for row in reader:
+          if row[2] == 'link' or row[2] == 'wkdt':
+            gn_id = row[1]
+            if gn_id in self.concordances:
+              self.concordances[gn_id].append(row[2])
+            else:
+              self.concordances[gn_id] = [ row[2] ]
+
+        print(f'Collected {len(self.concordances)} concordance links')
+
+  # Checks if there is a concordance for the given GeoNames ID
+  def includes(self, gn_id):
+    return self.concordances[gn_id] if gn_id in self.concordances else None
+
+def convert_zip(ccode, maybe_concordances):
   with open(OUTFILE, 'a') as outfile:
     with zipfile.ZipFile(f'./downloads/{ccode}.zip', 'r') as archive:
       with archive.open(f'{ccode}.txt') as f:
@@ -62,9 +87,10 @@ def convert_zip(ccode):
 
         ctr = 0
         for row in reader:
-          feature = Feature(row)
-          outfile.write(f'{feature.to_json()}\n')
-          ctr += 1
+          if (not maybe_concordances or maybe_concordances.includes(row[0])):
+            feature = Feature(row)
+            outfile.write(f'{feature.to_json()}\n')
+            ctr += 1
 
         return ctr
 
@@ -77,6 +103,8 @@ try:
   os.remove(OUTFILE)
 except OSError:
   pass
+
+maybe_concordances = Concordances() if cfg.require_concordance else None
 
 # List all Zip files in the downloads folder...
 zipfiles = [f for f in glob.glob('./downloads/*.zip')]
@@ -92,7 +120,7 @@ ccodes.sort()
 ctr = 0
 for ccode in ccodes:
   print(f'Converting file {ccode}.zip')
-  ctr += convert_zip(ccode)
+  ctr += convert_zip(ccode, maybe_concordances)
 
 print(f'Converted {ctr} records')
 

@@ -17,6 +17,10 @@ outfile = 'geonames_AT'
 countries = [ 'AT' ] 
 # countries = PRESETS['ANTARCTICA']
 
+# If set to True, the export will only include GeoNames features 
+# that have a Wikipedia or Wikidata link
+require_concordance = True
+
 
 
 
