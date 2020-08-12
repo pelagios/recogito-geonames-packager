@@ -128,5 +128,5 @@ print(f'Converted {ctr} records')
 # ...and gzip 
 print('GZipping...')
 gzip_outfile()
-print('Done.')
+print(f'Wrote results to {OUTFILE}.')
 
